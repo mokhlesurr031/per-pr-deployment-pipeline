@@ -1,0 +1,22 @@
+name: Manual PR Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up Environment
+        run: |
+          echo "Environment setup goes here"
+          # You can set up your environment variables and configurations
+
+      - name: Deploy PR Environment
+        run: |
+          echo "Deployment steps go here"
+          # You can use your deployment scripts here
