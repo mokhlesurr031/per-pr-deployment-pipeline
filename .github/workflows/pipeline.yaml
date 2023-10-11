@@ -11,10 +11,21 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Set up Environment
+      - name: Install Helm
         run: |
-          echo "Environment setup goes here"
-          # You can set up your environment variables and configurations
+          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+          chmod 700 get_helm.sh
+          ./get_helm.sh
+          helm version
+          helm repo add stable https://charts.helm.sh/stable
+          helm repo update
+
+      - name: Install Helmfile
+        run: |
+          curl -LO https://github.com/roboll/helmfile/releases/latest/download/helmfile_linux_amd64
+          chmod +x helmfile_linux_amd64
+          sudo mv helmfile_linux_amd64 /usr/local/bin/helmfile
+          helmfile --version
 
       - name: Deploy PR Environment
         run: |
