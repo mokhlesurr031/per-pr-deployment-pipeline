@@ -27,7 +27,12 @@ jobs:
           sudo mv helmfile_linux_amd64 /usr/local/bin/helmfile
           helmfile --version
 
-      - name: Deploy PR Environment
+      - name: Deploy PR Environment with Helmfile
         run: |
-          echo "Deployment steps go here"
-          # You can use your deployment scripts here
+          echo "Deployment steps using Helmfile go here"
+          # Navigate to the directory containing helmfile.yaml
+          cd deployment
+          python test.py
+
+          # Run Helmfile commands to deploy your Helm charts
+          # helmfile -f helmfile.yaml sync
