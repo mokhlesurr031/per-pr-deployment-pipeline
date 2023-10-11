@@ -1,6 +1,7 @@
 name: Manual PR Deployment
 
 on:
+  workflow_dispatch:
   pull_request:
     types:
       - opened
